@@ -73,25 +73,48 @@ namespace EQLogParser
     }
         internal static double? GetExperiencePercent(Fight fight)
         {
+            return GetExperienceSummary(fight).Percent;
+        }
+
+        internal static (double? Percent, string Type) GetExperienceSummary(Fight fight)
+        {
             if (fight == null ||
                 fight.IsInactivity ||
                 double.IsNaN(fight.BeginDamageTime))
             {
-                return null;
+                return (null, "");
             }
 
             var records = DataManager.Instance
-              .GetExperienceDuring(
-                fight.BeginDamageTime - 1,
-                fight.LastDamageTime + 1)
-              .SelectMany(block => block.Actions)
-              .OfType<ExperienceRecord>()
-              .Where(record => record.Percent.HasValue)
-              .ToList();
+                .GetExperienceDuring(
+                    fight.BeginDamageTime - 1,
+                    fight.LastDamageTime + 1)
+                .SelectMany(block => block.Actions)
+                .OfType<ExperienceRecord>()
+                .Where(record => record.Percent.HasValue)
+                .ToList();
 
-            return records.Count > 0
-              ? records.Sum(record => record.Percent.Value)
-              : null;
+            if (records.Count == 0)
+            {
+                return (null, "");
+            }
+
+            double totalPercent =
+                records.Sum(record => record.Percent.Value);
+
+            bool hasSolo =
+                records.Any(record => !record.IsPartyExperience);
+
+            bool hasGroup =
+                records.Any(record => record.IsPartyExperience);
+
+            string type = hasSolo && hasGroup
+                ? "mixed"
+                : hasGroup
+                    ? "group"
+                    : "solo";
+
+            return (totalPercent, type);
         }
         internal static double GetExperiencePercent(PlayerStats raidStats)
         {

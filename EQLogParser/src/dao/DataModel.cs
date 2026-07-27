@@ -292,6 +292,30 @@ namespace EQLogParser
     public long Total { get; set; }
         public double? ExperiencePercent =>
   IsInactivity ? null : StatsUtil.GetExperiencePercent(this);
+        public string ExperienceText
+        {
+            get
+            {
+                if (IsInactivity)
+                {
+                    return "";
+                }
+
+                var summary = StatsUtil.GetExperienceSummary(this);
+
+                if (!summary.Percent.HasValue)
+                {
+                    return "-";
+                }
+
+                return summary.Type switch
+                {
+                    "group" => $"{summary.Percent.Value:F3}% (group)",
+                    "mixed" => $"{summary.Percent.Value:F3}% (mixed)",
+                    _ => $"{summary.Percent.Value:F3}%"
+                };
+            }
+        }
         public long DamageHits { get; set; }
     public long TankHits { get; set; }
     public string TooltipText { get; set; }
