@@ -1,42 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\",
+  "WorkspaceRootPath": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\control\\damagestatsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\users\\diana\\source\\repos\\pallasathena1\\eqlogparser\\eqlogparser\\src\\control\\damagestatsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\control\\damagestatsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\parsing\\damagelineparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\parsing\\damagelineparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\users\\diana\\source\\repos\\pallasathena1\\eqlogparser\\eqlogparser\\src\\util\\statsutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\util\\statsutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\dao\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\dao\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\users\\diana\\source\\repos\\pallasathena1\\eqlogparser\\eqlogparser\\src\\ui\\summary\\damagesummary.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\ui\\summary\\damagesummary.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\control\\npcdamagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\control\\npcdamagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\users\\diana\\source\\repos\\pallasathena1\\eqlogparser\\eqlogparser\\src\\ui\\common\\fighttable.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\ui\\common\\fighttable.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\dao\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\dao\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\control\\healingstatsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\control\\healingstatsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\parsing\\healinglineparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\parsing\\healinglineparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\parsing\\linemodifiersparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\parsing\\linemodifiersparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\mine\\code\\git\\eqlogparser-thj\\eqlogparser\\src\\parsing\\misclineparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\parsing\\misclineparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|c:\\users\\diana\\source\\repos\\pallasathena1\\eqlogparser\\eqlogparser\\src\\ui\\common\\fighttable.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7573C49A-27F2-4053-8E6C-B7687DD9CBDE}|EQLogParser\\EQLogParser.csproj|solutionrelative:eqlogparser\\src\\ui\\common\\fighttable.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,8 +30,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StatsUtil.cs",
+              "DocumentMoniker": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\util\\StatsUtil.cs",
+              "RelativeDocumentMoniker": "EQLogParser\\src\\util\\StatsUtil.cs",
+              "ToolTip": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\util\\StatsUtil.cs",
+              "RelativeToolTip": "EQLogParser\\src\\util\\StatsUtil.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAwEoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-27T14:51:32.55Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -55,115 +53,52 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PlayerManager.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\dao\\PlayerManager.cs",
-              "RelativeDocumentMoniker": "EQLogParser\\src\\dao\\PlayerManager.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\dao\\PlayerManager.cs",
-              "RelativeToolTip": "EQLogParser\\src\\dao\\PlayerManager.cs",
-              "ViewState": "AgIAADwBAAAAAAAAAAArwFQBAAAEAAAAAAAAAA==",
+              "Title": "DamageSummary.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\ui\\summary\\DamageSummary.xaml.cs",
+              "RelativeDocumentMoniker": "EQLogParser\\src\\ui\\summary\\DamageSummary.xaml.cs",
+              "ToolTip": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\ui\\summary\\DamageSummary.xaml.cs",
+              "RelativeToolTip": "EQLogParser\\src\\ui\\summary\\DamageSummary.xaml.cs",
+              "ViewState": "AgIAAAQBAAAAAAAAAAAywA8BAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T14:12:45.151Z",
+              "WhenOpened": "2026-07-27T14:49:50.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FightTable.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\ui\\common\\FightTable.xaml.cs",
+              "RelativeDocumentMoniker": "EQLogParser\\src\\ui\\common\\FightTable.xaml.cs",
+              "ToolTip": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\ui\\common\\FightTable.xaml.cs",
+              "RelativeToolTip": "EQLogParser\\src\\ui\\common\\FightTable.xaml.cs",
+              "ViewState": "AgIAACQCAAAAAAAAAAAAACUCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-27T14:48:14.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FightTable.xaml",
+              "DocumentMoniker": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\ui\\common\\FightTable.xaml",
+              "RelativeDocumentMoniker": "EQLogParser\\src\\ui\\common\\FightTable.xaml",
+              "ToolTip": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\ui\\common\\FightTable.xaml",
+              "RelativeToolTip": "EQLogParser\\src\\ui\\common\\FightTable.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-27T14:48:03.41Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "DamageStatsManager.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\control\\DamageStatsManager.cs",
+              "DocumentMoniker": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\control\\DamageStatsManager.cs",
               "RelativeDocumentMoniker": "EQLogParser\\src\\control\\DamageStatsManager.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\control\\DamageStatsManager.cs",
+              "ToolTip": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\EQLogParser\\src\\control\\DamageStatsManager.cs",
               "RelativeToolTip": "EQLogParser\\src\\control\\DamageStatsManager.cs",
-              "ViewState": "AgIAAJQBAAAAAAAAAAAAAJcBAABDAAAAAAAAAA==",
+              "ViewState": "AgIAAPEBAAAAAAAAAADwv/IBAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T14:10:25.904Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DataManager.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\dao\\DataManager.cs",
-              "RelativeDocumentMoniker": "EQLogParser\\src\\dao\\DataManager.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\dao\\DataManager.cs",
-              "RelativeToolTip": "EQLogParser\\src\\dao\\DataManager.cs",
-              "ViewState": "AgIAANQDAAAAAAAAAAAgwEsAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T02:55:12.862Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NpcDamageManager.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\control\\NpcDamageManager.cs",
-              "RelativeDocumentMoniker": "EQLogParser\\src\\control\\NpcDamageManager.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\control\\NpcDamageManager.cs",
-              "RelativeToolTip": "EQLogParser\\src\\control\\NpcDamageManager.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAADgvygAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T07:19:09.935Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MiscLineParser.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\parsing\\MiscLineParser.cs",
-              "RelativeDocumentMoniker": "EQLogParser\\src\\parsing\\MiscLineParser.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\parsing\\MiscLineParser.cs",
-              "RelativeToolTip": "EQLogParser\\src\\parsing\\MiscLineParser.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAIwC0AAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-17T23:11:12.424Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LineModifiersParser.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\parsing\\LineModifiersParser.cs",
-              "RelativeDocumentMoniker": "EQLogParser\\src\\parsing\\LineModifiersParser.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\parsing\\LineModifiersParser.cs",
-              "RelativeToolTip": "EQLogParser\\src\\parsing\\LineModifiersParser.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAuwCAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-16T21:16:41.64Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HealingLineParser.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\parsing\\HealingLineParser.cs",
-              "RelativeDocumentMoniker": "EQLogParser\\src\\parsing\\HealingLineParser.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\parsing\\HealingLineParser.cs",
-              "RelativeToolTip": "EQLogParser\\src\\parsing\\HealingLineParser.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAwC4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T05:26:49.183Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DamageLineParser.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\parsing\\DamageLineParser.cs",
-              "RelativeDocumentMoniker": "EQLogParser\\src\\parsing\\DamageLineParser.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\parsing\\DamageLineParser.cs",
-              "RelativeToolTip": "EQLogParser\\src\\parsing\\DamageLineParser.cs",
-              "ViewState": "AgIAAOYCAAAAAAAAAADgv/gCAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T21:23:23.511Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HealingStatsManager.cs",
-              "DocumentMoniker": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\control\\HealingStatsManager.cs",
-              "RelativeDocumentMoniker": "EQLogParser\\src\\control\\HealingStatsManager.cs",
-              "ToolTip": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\EQLogParser\\src\\control\\HealingStatsManager.cs",
-              "RelativeToolTip": "EQLogParser\\src\\control\\HealingStatsManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIEBAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T07:09:31.253Z",
               "EditorCaption": ""
             }
           ]

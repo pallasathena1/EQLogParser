@@ -2823,19 +2823,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jlabo\\.nuget\\packages\\": {}
+    "C:\\Users\\diana\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\MaterialLightCustom\\Syncfusion.Themes.MaterialLightCustom.csproj",
+      "projectUniqueName": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\MaterialLightCustom\\Syncfusion.Themes.MaterialLightCustom.csproj",
       "projectName": "Syncfusion.Themes.MaterialLightCustom.WPF",
-      "projectPath": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\MaterialLightCustom\\Syncfusion.Themes.MaterialLightCustom.csproj",
-      "packagesPath": "C:\\Users\\jlabo\\.nuget\\packages\\",
-      "outputPath": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\MaterialLightCustom\\obj\\",
+      "projectPath": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\MaterialLightCustom\\Syncfusion.Themes.MaterialLightCustom.csproj",
+      "packagesPath": "C:\\Users\\diana\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\MaterialLightCustom\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jlabo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\diana\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2861,7 +2861,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net5.0-windows7.0": {
@@ -3037,7 +3037,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.316\\RuntimeIdentifierGraph.json"
       }
     }
   }

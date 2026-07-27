@@ -695,7 +695,18 @@ namespace EQLogParser
             ConfigUtil.SetSetting("LastOpenedFile", CurrentLogFile);
             OverlayUtil.OpenIfEnabled();
             LOG.Info("Finished Loading Log File in " + seconds.ToString(CultureInfo.CurrentCulture) + " seconds.");
-            Task.Delay(1000).ContinueWith(task => Dispatcher.InvokeAsync(() => EventsLogLoadingComplete?.Invoke(this, true)));
+                  var xpSummary = DataManager.Instance.GetAllExperienceRate();
+
+                  LOG.Info(
+                    string.Format(
+                      CultureInfo.InvariantCulture,
+                      "XP Summary: {0} measurable gains, {1:F3}% total over {2:F1} minutes, {3:F2}% per hour.",
+                      xpSummary.Count,
+                      xpSummary.TotalPercent,
+                      xpSummary.ElapsedMinutes,
+                      xpSummary.PercentPerHour));
+
+                  Task.Delay(1000).ContinueWith(task => Dispatcher.InvokeAsync(() => EventsLogLoadingComplete?.Invoke(this, true)));
           }
           else
           {
@@ -844,6 +855,7 @@ namespace EQLogParser
       if (!string.IsNullOrEmpty(line) && line.Length > 30)
       {
         var lineData = new LineData { Action = line.Substring(ACTION_INDEX), LineNumber = LineCount, BeginTime = dateTime };
+                lineData = lineData;
 
         // avoid having other things parse chat by accident
         if (ChatLineParser.Process(lineData, line) is ChatType chatType)

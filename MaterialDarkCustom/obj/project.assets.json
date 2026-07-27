@@ -2417,19 +2417,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jlabo\\.nuget\\packages\\": {}
+    "C:\\Users\\diana\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\MaterialDarkCustom\\Syncfusion.Themes.MaterialDarkCustom.csproj",
+      "projectUniqueName": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\MaterialDarkCustom\\Syncfusion.Themes.MaterialDarkCustom.csproj",
       "projectName": "Syncfusion.Themes.MaterialDarkCustom.WPF",
-      "projectPath": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\MaterialDarkCustom\\Syncfusion.Themes.MaterialDarkCustom.csproj",
-      "packagesPath": "C:\\Users\\jlabo\\.nuget\\packages\\",
-      "outputPath": "C:\\Mine\\Code\\git\\EQLogParser-THJ\\MaterialDarkCustom\\obj\\",
+      "projectPath": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\MaterialDarkCustom\\Syncfusion.Themes.MaterialDarkCustom.csproj",
+      "packagesPath": "C:\\Users\\diana\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\diana\\source\\repos\\pallasathena1\\EQLogParser\\MaterialDarkCustom\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jlabo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\diana\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2455,7 +2455,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net6.0-windows10.0.17763": {
@@ -2587,20 +2587,8 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
             "name": "Microsoft.Windows.SDK.NET.Ref",
-            "version": "[10.0.17763.52, 10.0.17763.52]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
+            "version": "[10.0.17763.55, 10.0.17763.55]"
           }
         ],
         "frameworkReferences": {
@@ -2614,7 +2602,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.316\\RuntimeIdentifierGraph.json"
       }
     }
   }

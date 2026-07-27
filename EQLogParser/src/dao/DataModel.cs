@@ -157,8 +157,12 @@ namespace EQLogParser
     public string Npc { get; set; }
     public bool IsCurrency { get; set; }
   }
-
-  internal class TauntRecord : IAction
+    class ExperienceRecord : IAction
+    {
+        internal double? Percent { get; set; }
+        internal bool IsPartyExperience { get; set; }
+    }
+    internal class TauntRecord : IAction
   {
     public string Player { get; set; }
     public string Npc { get; set; }

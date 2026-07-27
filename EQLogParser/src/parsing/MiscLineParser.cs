@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace EQLogParser
 {
@@ -10,7 +12,10 @@ namespace EQLogParser
     private static readonly List<string> Currency = new List<string> { "Platinum", "Gold", "Silver", "Copper" };
     private static readonly Dictionary<char, uint> Rates = new Dictionary<char, uint>() { { 'p', 1000 }, { 'g', 100 }, { 's', 10 }, { 'c', 1 } };
     private static readonly char[] LootedFromTrim = new char[] { '-', '.' };
-    private static readonly Dictionary<string, byte> StruckByTypes = new Dictionary<string, byte>()
+        private static readonly Regex ExperienceRegex = new Regex(
+      @"^You gain (?<party>party )?experience!(?: \((?<percent>\d+(?:\.\d+)?)%\))?$",
+      RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static readonly Dictionary<string, byte> StruckByTypes = new Dictionary<string, byte>()
     {
       { "afflicted", 1 }, { "angered", 1 }, { "assaulted", 1 }, { "beset", 1 }, { "bound", 1 }, { "burned", 1 }, { "consumed", 1 }, { "cursed", 1 },
       { "crushed", 1 }, { "cut", 1 }, { "drained", 1 }, { "engulfed", 1 }, { "enveloped", 1 }, { "chilled", 1 }, { "frozen", 1 }, { "hit", 1 },
@@ -25,9 +30,34 @@ namespace EQLogParser
       try
       {
         string[] split = lineData.Action.Split(' ');
+                Match experienceMatch = ExperienceRegex.Match(lineData.Action);
 
-        if (split != null && split.Length >= 2)
-        {
+                if (experienceMatch.Success)
+                {
+                    double? percent = null;
+
+                    string percentText = experienceMatch.Groups["percent"].Value;
+                    if (!string.IsNullOrEmpty(percentText) &&
+                        double.TryParse(
+                          percentText,
+                          NumberStyles.Float,
+                          CultureInfo.InvariantCulture,
+                          out double parsedPercent))
+                    {
+                        percent = parsedPercent;
+                    }
+
+                    var record = new ExperienceRecord
+                    {
+                        Percent = percent,
+                        IsPartyExperience = experienceMatch.Groups["party"].Success
+                    };
+
+                    DataManager.Instance.AddExperienceRecord(record, lineData.BeginTime);
+                    handled = true;
+                }
+                if (!handled && split != null && split.Length >= 2)
+                {
           // [Sun Mar 01 22:20:36 2020] A shaded torch has been awakened by Drogbaa.
           // [Sun Mar 01 20:35:55 2020] The master looter, Qulas, looted 32426 platinum from the corpse.
           // [Sun Mar 01 23:51:02 2020] You receive 129 platinum, 2 gold and 1 copper as your split (with a lucky bonus).

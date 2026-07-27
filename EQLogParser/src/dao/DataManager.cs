@@ -98,8 +98,9 @@ namespace EQLogParser
     private readonly List<ActionBlock> AllLootBlocks = new List<ActionBlock>();
     private readonly List<TimedAction> AllSpecialActions = new List<TimedAction>();
     private readonly List<LootRecord> AssignedLoot = new List<LootRecord>();
-
-    private readonly List<string> AdpsKeys = new List<string> { "#DoTCritRate", "#NukeCritRate" };
+        private readonly List<ActionBlock> AllExperienceBlocks =
+          new List<ActionBlock>();
+        private readonly List<string> AdpsKeys = new List<string> { "#DoTCritRate", "#NukeCritRate" };
     private readonly Dictionary<string, Dictionary<string, uint>> AdpsActive = new Dictionary<string, Dictionary<string, uint>>();
     private readonly Dictionary<string, Dictionary<string, uint>> AdpsValues = new Dictionary<string, Dictionary<string, uint>>();
     private readonly Dictionary<string, HashSet<SpellData>> AdpsLandsOn = new Dictionary<string, HashSet<SpellData>>();
@@ -289,7 +290,71 @@ namespace EQLogParser
 
     internal void AddDeathRecord(DeathRecord record, double beginTime) => Helpers.AddAction(AllDeathBlocks, record, beginTime);
     internal void AddMiscRecord(IAction action, double beginTime) => Helpers.AddAction(AllMiscBlocks, action, beginTime);
-    internal void AddReceivedSpell(ReceivedSpell received, double beginTime) => Helpers.AddAction(AllReceivedSpellBlocks, received, beginTime);
+
+        internal void AddExperienceRecord(ExperienceRecord record, double beginTime) =>
+  Helpers.AddAction(AllExperienceBlocks, record, beginTime);
+        internal List<ActionBlock> GetExperienceDuring(double beginTime, double endTime) =>
+  SearchActions(AllExperienceBlocks, beginTime, endTime);
+        internal (double TotalPercent, int Count, double PercentPerHour)
+  GetExperienceRate(double beginTime, double endTime)
+        {
+            List<ActionBlock> blocks = GetExperienceDuring(beginTime, endTime);
+
+            List<ExperienceRecord> records = blocks
+              .SelectMany(block => block.Actions)
+              .OfType<ExperienceRecord>()
+              .Where(record => record.Percent.HasValue)
+              .ToList();
+
+            double totalPercent = records.Sum(record => record.Percent.Value);
+            double hours = (endTime - beginTime) / 3600.0;
+            double percentPerHour = hours > 0 ? totalPercent / hours : 0;
+
+            return (totalPercent, records.Count, percentPerHour);
+        }
+
+        internal (double TotalPercent, int Count, double ElapsedMinutes, double PercentPerHour)
+  GetAllExperienceRate()
+        {
+            var timedRecords = AllExperienceBlocks
+              .SelectMany(block => block.Actions
+                .OfType<ExperienceRecord>()
+                .Where(record => record.Percent.HasValue)
+                .Select(record => new
+                {
+                    Time = block.BeginTime,
+                    Record = record
+                }))
+              .OrderBy(item => item.Time)
+              .ToList();
+
+            if (timedRecords.Count == 0)
+            {
+                return (0, 0, 0, 0);
+            }
+
+            double totalPercent =
+              timedRecords.Sum(item => item.Record.Percent.Value);
+
+            double elapsedSeconds =
+              timedRecords.Count > 1
+                ? timedRecords.Last().Time - timedRecords.First().Time
+                : 0;
+
+            double elapsedMinutes = elapsedSeconds / 60.0;
+
+            double percentPerHour =
+              elapsedSeconds > 0
+                ? totalPercent / (elapsedSeconds / 3600.0)
+                : 0;
+
+            return (
+              totalPercent,
+              timedRecords.Count,
+              elapsedMinutes,
+              percentPerHour);
+        }
+        internal void AddReceivedSpell(ReceivedSpell received, double beginTime) => Helpers.AddAction(AllReceivedSpellBlocks, received, beginTime);
     internal List<Fight> GetOverlayFights() => OverlayFights.Values.ToList();
     internal List<ActionBlock> GetAllLoot() => AllLootBlocks.ToList();
     internal List<ActionBlock> GetAllRandoms() => AllRandomBlocks.ToList();
@@ -994,7 +1059,8 @@ namespace EQLogParser
         AllResistBlocks.Clear();
         AllHealBlocks.Clear();
         AllLootBlocks.Clear();
-        AllRandomBlocks.Clear();
+                AllExperienceBlocks.Clear();
+                AllRandomBlocks.Clear();
         AllSpecialActions.Clear();
         SpellAbbrvCache.Clear();
         NpcTotalSpellCounts.Clear();

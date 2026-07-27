@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace EQLogParser
@@ -495,9 +496,30 @@ namespace EQLogParser
             };
 
             combined.StatsList.AddRange(topLevelStats.Values.AsParallel().OrderByDescending(item => item.Total));
-            combined.FullTitle = StatsUtil.FormatTitle(combined.TargetTitle, combined.TimeTitle, combined.TotalTitle);
-            combined.ShortTitle = StatsUtil.FormatTitle(combined.TargetTitle, combined.TimeTitle, "");
-            combined.ExpandedStatsList.AddRange(expandedStats.AsParallel().OrderByDescending(item => item.Total));
+                        double experiencePercent =
+              StatsUtil.GetExperiencePercent(RaidTotals);
+
+                        string experienceTitle = experiencePercent > 0
+                          ? string.Format(
+                              CultureInfo.CurrentCulture,
+                              " ({0:F3}% xp)",
+                              experiencePercent)
+                          : "";
+
+                        combined.FullTitle =
+                          StatsUtil.FormatTitle(
+                            combined.TargetTitle,
+                            combined.TimeTitle,
+                            combined.TotalTitle) +
+                          experienceTitle;
+
+                        combined.ShortTitle =
+                          StatsUtil.FormatTitle(
+                            combined.TargetTitle,
+                            combined.TimeTitle,
+                            "") +
+                          experienceTitle; 
+                        combined.ExpandedStatsList.AddRange(expandedStats.AsParallel().OrderByDescending(item => item.Total));
 
             for (int i = 0; i < combined.ExpandedStatsList.Count; i++)
             {

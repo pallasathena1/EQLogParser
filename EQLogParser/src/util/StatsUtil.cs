@@ -71,8 +71,38 @@ namespace EQLogParser
 
       return stats;
     }
+        internal static double GetExperiencePercent(PlayerStats raidStats)
+        {
+            if (raidStats?.Ranges?.TimeSegments == null)
+            {
+                return 0;
+            }
 
-    internal static string FormatTitle(string targetTitle, string timeTitle, string damageTitle = "")
+            double totalPercent = 0;
+            var countedRecords = new HashSet<ExperienceRecord>();
+
+            foreach (var segment in raidStats.Ranges.TimeSegments)
+            {
+                // Small padding because XP and death/damage messages can share
+                // a timestamp while arriving in a particular log order.
+                double beginTime = segment.BeginTime - 1;
+                double endTime = segment.EndTime + 1;
+
+                foreach (var block in DataManager.Instance.GetExperienceDuring(beginTime, endTime))
+                {
+                    foreach (var record in block.Actions.OfType<ExperienceRecord>())
+                    {
+                        if (record.Percent.HasValue && countedRecords.Add(record))
+                        {
+                            totalPercent += record.Percent.Value;
+                        }
+                    }
+                }
+            }
+
+            return totalPercent;
+        }
+        internal static string FormatTitle(string targetTitle, string timeTitle, string damageTitle = "")
     {
       string result = targetTitle;
       if (!string.IsNullOrEmpty(timeTitle))
