@@ -92,8 +92,13 @@ namespace EQLogParser
       fightShowHitPoints.IsChecked = ConfigUtil.IfSet("NpcShowHitPoints");
       dataGrid.Columns[1].IsHidden = !fightShowHitPoints.IsChecked.Value;
 
-      // read show breaks and spells setting
-      fightShowBreaks.IsChecked = CurrentShowBreaks = ConfigUtil.IfSet("NpcShowInactivityBreaks", null, true);
+            fightShowExperience.IsChecked =
+  ConfigUtil.IfSet("NpcShowExperience", null, true);
+
+            experienceColumn.IsHidden =
+              !fightShowExperience.IsChecked.Value;
+            // read show breaks and spells setting
+            fightShowBreaks.IsChecked = CurrentShowBreaks = ConfigUtil.IfSet("NpcShowInactivityBreaks", null, true);
       fightShowTanking.IsChecked = ConfigUtil.IfSet("NpcShowTanking", null, true);
       dataGrid.ItemsSource = fightShowTanking.IsChecked.Value ? Fights : NonTankingFights;
 
@@ -534,8 +539,20 @@ namespace EQLogParser
         SearchTextTimer?.Start();
       }
     }
+        private void ShowExperienceChange(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid != null && experienceColumn != null)
+            {
+                experienceColumn.IsHidden =
+                  !fightShowExperience.IsChecked.Value;
 
-    private void Instance_EventsCleardActiveData(object sender, bool cleared)
+                ConfigUtil.SetSetting(
+                  "NpcShowExperience",
+                  fightShowExperience.IsChecked.Value
+                    .ToString(CultureInfo.CurrentCulture));
+            }
+        }
+        private void Instance_EventsCleardActiveData(object sender, bool cleared)
     {
       NonTankingFights.Clear();
       NonTankingFightsToProcess.Clear();

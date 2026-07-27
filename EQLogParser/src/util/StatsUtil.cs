@@ -71,6 +71,28 @@ namespace EQLogParser
 
       return stats;
     }
+        internal static double? GetExperiencePercent(Fight fight)
+        {
+            if (fight == null ||
+                fight.IsInactivity ||
+                double.IsNaN(fight.BeginDamageTime))
+            {
+                return null;
+            }
+
+            var records = DataManager.Instance
+              .GetExperienceDuring(
+                fight.BeginDamageTime - 1,
+                fight.LastDamageTime + 1)
+              .SelectMany(block => block.Actions)
+              .OfType<ExperienceRecord>()
+              .Where(record => record.Percent.HasValue)
+              .ToList();
+
+            return records.Count > 0
+              ? records.Sum(record => record.Percent.Value)
+              : null;
+        }
         internal static double GetExperiencePercent(PlayerStats raidStats)
         {
             if (raidStats?.Ranges?.TimeSegments == null)

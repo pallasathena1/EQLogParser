@@ -45,6 +45,12 @@
     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
       <TextBox x:Name="fightSearchBox" Margin="8,0,0,2" Width="130" GotFocus="FightSearchBoxGotFocus" LostFocus="FightSearchBoxLostFocus" TextChanged="FightSearchBoxTextChanged" PreviewKeyDown="FightSearchBoxKeyDown" />
       <CheckBox x:Name="fightShowHitPoints" IsChecked="True" Margin="10,0,0,2" ToolTip="Show Hit Points" Checked="ShowHitPointsChange" Unchecked="ShowHitPointsChange">HP</CheckBox>
+      <CheckBox x:Name="fightShowExperience"
+             IsChecked="True"
+             Margin="8,0,0,2"
+             ToolTip="Show Experience"
+             Checked="ShowExperienceChange"
+             Unchecked="ShowExperienceChange">XP</CheckBox>
       <CheckBox x:Name="fightShowBreaks" IsChecked="True" Margin="8,0,0,2" ToolTip="Add Breaks for Inactivity" Checked="ShowBreakChange" Unchecked="ShowBreakChange">Inactivty</CheckBox>
       <CheckBox x:Name="fightShowTanking" IsChecked="True" Margin="8,0,0,2" ToolTip="Include Fights with only Tanking data" Checked="ShowTankingChange" Unchecked="ShowTankingChange">Tanking</CheckBox>
     </StackPanel>
@@ -119,6 +125,13 @@
         <syncfusion:GridTextColumn MappingName="SortId" SortMode="Value" DisplayBinding="{Binding BeginTimeString}" 
                                    Width="110" TextAlignment="Center" ShowToolTip="True" ToolTipTemplate="{StaticResource TemplateToolTip}" HeaderText="Initial Hit Time" />
         <syncfusion:GridTextColumn DisplayBinding="{Binding Total, Converter={StaticResource TotalFormatConverter}}" ShowToolTip="True" ToolTipTemplate="{StaticResource TemplateToolTip}" TextAlignment="Right" HeaderText="HP" />
+        <syncfusion:GridTextColumn
+     x:Name="experienceColumn"
+     MappingName="ExperiencePercent"
+     DisplayBinding="{Binding ExperiencePercent, StringFormat={}{0:F3}%}"
+     TextAlignment="Right"
+     HeaderText="XP"
+     Width="70" />
         <syncfusion:GridTextColumn DisplayBinding="{Binding Name}" ShowToolTip="True" ToolTipTemplate="{StaticResource TemplateToolTip}" HeaderText="Name" />
       </syncfusion:SfDataGrid.Columns>
     </syncfusion:SfDataGrid>

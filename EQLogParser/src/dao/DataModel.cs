@@ -290,7 +290,9 @@ namespace EQLogParser
     public int NonTankingGroupId { get; set; }
     public bool IsInactivity { get; set; } = false;
     public long Total { get; set; }
-    public long DamageHits { get; set; }
+        public double? ExperiencePercent =>
+  IsInactivity ? null : StatsUtil.GetExperiencePercent(this);
+        public long DamageHits { get; set; }
     public long TankHits { get; set; }
     public string TooltipText { get; set; }
     public ConcurrentDictionary<string, FightTotalDamage> PlayerTotals { get; } = new ConcurrentDictionary<string, FightTotalDamage>();
