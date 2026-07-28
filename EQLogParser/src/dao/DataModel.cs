@@ -400,8 +400,124 @@ namespace EQLogParser
     public Dictionary<string, SpellDamageStats> DoTDamage { get; } = new Dictionary<string, SpellDamageStats>();
     public Dictionary<string, SpellDamageStats> DDDamage { get; } = new Dictionary<string, SpellDamageStats>();
   }
+    internal class CampSession
+    {
+        public string Zone { get; set; }
 
-  internal class FightTotalDamage
+        public string ZoneShortName { get; set; }
+
+        public string InstanceType { get; set; }
+
+        public int? Difficulty { get; set; }
+
+        public string DifficultyName { get; set; }
+
+        public int? PlayerLevel { get; set; }
+
+        public double BeginTime { get; set; }
+
+        public double EndTime { get; set; }
+
+        public List<Fight> Fights { get; } = new List<Fight>();
+
+        public int EffectiveDifficulty => Difficulty ?? 0;
+
+        public int FightCount => Fights.Count;
+
+        public double DurationSeconds =>
+            Math.Max(0, EndTime - BeginTime);
+
+        public string DurationText =>
+            TimeSpan.FromSeconds(DurationSeconds).ToString(
+                DurationSeconds >= 3600 ? @"h\:mm\:ss" : @"m\:ss");
+
+        public string ZoneInstDiffText
+        {
+            get
+            {
+                string zoneText = ZoneShortName ?? Zone;
+
+                if (string.IsNullOrWhiteSpace(zoneText))
+                {
+                    return "-";
+                }
+
+                string result = zoneText;
+
+                if (Difficulty.HasValue)
+                {
+                    result += $" ({Difficulty.Value})";
+                }
+
+                if (!string.IsNullOrWhiteSpace(InstanceType))
+                {
+                    result += $" ({InstanceType})";
+                }
+
+                return result;
+            }
+        }
+        public string BeginTimeText =>
+    DateUtil.FormatSimpleDate(BeginTime);
+
+        public double TotalExperiencePercent
+        {
+            get
+            {
+                double total = 0;
+
+                foreach (Fight fight in Fights)
+                {
+                    if (fight.ExperiencePercent.HasValue)
+                    {
+                        total += fight.ExperiencePercent.Value;
+                    }
+                }
+
+                return total;
+            }
+        }
+
+        public string ExperienceText =>
+            $"{TotalExperiencePercent:F3}%";
+
+        public double ExperiencePerHour
+        {
+            get
+            {
+                if (DurationSeconds <= 0)
+                {
+                    return 0;
+                }
+
+                return TotalExperiencePercent * 3600.0 / DurationSeconds;
+            }
+        }
+
+        public string ExperiencePerHourText =>
+            $"{ExperiencePerHour:F3}%";
+
+        public long TotalHitPoints
+        {
+            get
+            {
+                long total = 0;
+
+                foreach (Fight fight in Fights)
+                {
+                    total += fight.Total;
+                }
+
+                return total;
+            }
+        }
+
+        public double AverageHitPoints =>
+            FightCount > 0
+                ? (double)TotalHitPoints / FightCount
+                : 0;
+    }
+    internal class FightTotalDamage
   {
     public long Damage { get; set; }
     public string Name { get; set; }
