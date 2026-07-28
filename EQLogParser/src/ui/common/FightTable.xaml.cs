@@ -88,9 +88,12 @@ namespace EQLogParser
       UpdateTimer.Tick += (sender, e) => ProcessFights();
       UpdateTimer.Start();
 
-      // read show hp setting
-      fightShowHitPoints.IsChecked = ConfigUtil.IfSet("NpcShowHitPoints");
-      dataGrid.Columns[1].IsHidden = !fightShowHitPoints.IsChecked.Value;
+            // Customize columns displayed
+            fightShowHitPoints.IsChecked =
+            ConfigUtil.IfSet("NpcShowHitPoints");
+
+            hitPointsColumn.IsHidden =
+                !fightShowHitPoints.IsChecked.Value;
 
             fightShowExperience.IsChecked =
   ConfigUtil.IfSet("NpcShowExperience", null, true);
@@ -102,8 +105,17 @@ namespace EQLogParser
       fightShowTanking.IsChecked = ConfigUtil.IfSet("NpcShowTanking", null, true);
       dataGrid.ItemsSource = fightShowTanking.IsChecked.Value ? Fights : NonTankingFights;
 
-      // default these columns to descending
-      string[] desc = new string[] { "SortId" };
+            fightShowContext.IsChecked =
+    ConfigUtil.IfSet("NpcShowContext", null, true);
+
+            levelColumn.IsHidden =
+                !fightShowContext.IsChecked.Value;
+
+            zoneContextColumn.IsHidden =
+                !fightShowContext.IsChecked.Value;
+
+            // default these columns to descending
+            string[] desc = new string[] { "SortId" };
       dataGrid.SortColumnsChanging += (object s, GridSortColumnsChangingEventArgs e) => DataGridUtil.SortColumnsChanging(s, e, desc);
       dataGrid.SortColumnsChanged += (object s, GridSortColumnsChangedEventArgs e) => DataGridUtil.SortColumnsChanged(s, e, desc);
 
@@ -396,16 +408,21 @@ namespace EQLogParser
       }
     }
 
-    private void ShowHitPointsChange(object sender, RoutedEventArgs e)
-    {
-      if (dataGrid != null)
-      {
-        dataGrid.Columns[1].IsHidden = !dataGrid.Columns[1].IsHidden;
-        ConfigUtil.SetSetting("NpcShowHitPoints", (!dataGrid.Columns[1].IsHidden).ToString(CultureInfo.CurrentCulture));
-      }
-    }
+        private void ShowHitPointsChange(object sender, RoutedEventArgs e)
+        {
+            if (hitPointsColumn != null && fightShowHitPoints != null)
+            {
+                bool show = fightShowHitPoints.IsChecked == true;
 
-    private void FightSearchBoxGotFocus(object sender, RoutedEventArgs e)
+                hitPointsColumn.IsHidden = !show;
+
+                ConfigUtil.SetSetting(
+                    "NpcShowHitPoints",
+                    show.ToString(CultureInfo.CurrentCulture));
+            }
+        }
+
+        private void FightSearchBoxGotFocus(object sender, RoutedEventArgs e)
     {
       if (fightSearchBox.Text == EQLogParser.Resource.NPC_SEARCH_TEXT)
       {
@@ -550,6 +567,22 @@ namespace EQLogParser
                   "NpcShowExperience",
                   fightShowExperience.IsChecked.Value
                     .ToString(CultureInfo.CurrentCulture));
+            }
+        }
+        private void ShowContextChange(object sender, RoutedEventArgs e)
+        {
+            if (levelColumn != null &&
+                zoneContextColumn != null &&
+                fightShowContext != null)
+            {
+                bool show = fightShowContext.IsChecked == true;
+
+                levelColumn.IsHidden = !show;
+                zoneContextColumn.IsHidden = !show;
+
+                ConfigUtil.SetSetting(
+                    "NpcShowContext",
+                    show.ToString(CultureInfo.CurrentCulture));
             }
         }
         private void Instance_EventsCleardActiveData(object sender, bool cleared)

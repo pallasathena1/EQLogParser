@@ -299,14 +299,21 @@ namespace EQLogParser
     }
 
     public const string BREAKTIME = "Break Time";
-
-    public bool Dead { get; set; } = false;
+        public string DifficultyText =>
+    DifficultyName ?? Difficulty?.ToString() ?? "-";
+        public bool Dead { get; set; } = false;
     public double BeginDamageTime { get; set; } = double.NaN;
     public double BeginTankingTime { get; set; } = double.NaN;
     public double LastDamageTime { get; set; }
     public double LastTankingTime { get; set; }
     public string BeginTimeString { get; set; }
-    public string Name { get; set; }
+        public double FightLengthSeconds =>
+    Math.Max(0, LastTime - BeginTime + 1);
+
+        public string FightLengthText =>
+            TimeSpan.FromSeconds(FightLengthSeconds).ToString(
+                FightLengthSeconds >= 3600 ? @"h\:mm\:ss" : @"m\:ss");
+        public string Name { get; set; }
     public int Id { get; set; }
     public string CorrectMapKey { get; set; }
     public int GroupId { get; set; }
@@ -351,6 +358,34 @@ namespace EQLogParser
                 };
             }
         }
+        public string ZoneInstDiffText
+        {
+            get
+            {
+                string zoneText = ZoneShortName ?? Zone;
+
+                if (string.IsNullOrWhiteSpace(zoneText))
+                {
+                    return "-";
+                }
+
+                string result = zoneText;
+
+                if (Difficulty.HasValue)
+                {
+                    result += $" ({Difficulty.Value})";
+                }
+
+                if (!string.IsNullOrWhiteSpace(InstanceType))
+                {
+                    result += $" ({InstanceType})";
+                }
+
+                return result;
+            }
+        }
+
+        public string ZoneShortName { get; set; }
         public long DamageHits { get; set; }
     public long TankHits { get; set; }
     public string TooltipText { get; set; }
