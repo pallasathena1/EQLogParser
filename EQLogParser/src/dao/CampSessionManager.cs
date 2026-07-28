@@ -24,7 +24,8 @@ namespace EQLogParser
         }
 
         internal IReadOnlyList<CampSession> GetSessions() => Sessions;
-
+        private readonly Dictionary<Fight, CampSession> FightSessions =
+  new Dictionary<Fight, CampSession>();
         private void HandleNewFight(object sender, Fight fight)
         {
             AddFight(fight);
@@ -32,21 +33,27 @@ namespace EQLogParser
 
         private void HandleUpdateFight(object sender, Fight fight)
         {
-            CampSession session = Sessions
-              .FirstOrDefault(item => item.Fights.Contains(fight));
-
-            if (session == null)
+            if (!FightSessions.TryGetValue(fight, out CampSession session))
             {
                 return;
             }
 
-            session.EndTime = Math.Max(session.EndTime, fight.LastTime);
+            double endTime = Math.Max(session.EndTime, fight.LastTime);
+
+            if (endTime == session.EndTime)
+            {
+                return;
+            }
+
+            session.EndTime = endTime;
             EventsUpdateCamp?.Invoke(this, session);
         }
 
         private void HandleCleared(object sender, bool cleared)
         {
             Sessions.Clear();
+            FightSessions.Clear();
+
             EventsCleared?.Invoke(this, EventArgs.Empty);
         }
 
@@ -69,14 +76,16 @@ namespace EQLogParser
             {
                 current = CreateSession(fight);
                 Sessions.Add(current);
+                FightSessions[fight] = current;
 
                 EventsNewCamp?.Invoke(this, current);
             }
             else
             {
                 current.Fights.Add(fight);
-                current.EndTime = Math.Max(current.EndTime, fight.LastTime);
+                FightSessions[fight] = current;
 
+                current.EndTime = Math.Max(current.EndTime, fight.LastTime);
                 EventsUpdateCamp?.Invoke(this, current);
             }
         }

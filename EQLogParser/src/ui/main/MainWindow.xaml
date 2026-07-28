@@ -203,7 +203,20 @@
                 <fa:ImageAwesome x:Name="npcIcon" Tag="npcWindow" Loaded="WindowIconLoaded" Style="{StaticResource EQIconStyle}" Visibility="Hidden" Icon="Solid_Check" />
               </MenuItem.Icon>
             </MenuItem>
-            <MenuItem x:Name="playerParseTextWindowMenuItem" Header="_Preview Parse" Click="MenuItemWindowClick" Height="24">
+                        <MenuItem x:Name="campWindowMenuItem"
+          Header="_Camp List"
+          Click="MenuItemWindowClick"
+          Height="24">
+                            <MenuItem.Icon>
+                                <fa:ImageAwesome x:Name="campIcon"
+                     Tag="campWindow"
+                     Loaded="WindowIconLoaded"
+                     Style="{StaticResource EQIconStyle}"
+                     Visibility="Hidden"
+                     Icon="Solid_Check" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="playerParseTextWindowMenuItem" Header="_Preview Parse" Click="MenuItemWindowClick" Height="24">
               <MenuItem.Icon>
                 <fa:ImageAwesome x:Name="playerParseIcon" Tag="playerParseTextWindow" Loaded="WindowIconLoaded" Style="{StaticResource EQIconStyle}" Visibility="Hidden" Icon="Solid_Check" />
               </MenuItem.Icon>
@@ -330,7 +343,19 @@
                       syncfusion:DockingManager.DesiredWidthInDockedMode="340" syncfusion:DockingManager.DesiredWidthInFloatingMode="340">
         <local:FightTable />
       </ContentControl>
-      <ContentControl x:Name="petMappingWindow" Tag="Hide" syncfusion:DockingManager.Header="Pet Owners" syncfusion:DockingManager.State="Dock" syncfusion:DockingManager.SideInDockedMode="Right" 
+            <ContentControl x:Name="campWindow"
+                Tag="Hide"
+                Padding="0"
+                Margin="0"
+                syncfusion:DockingManager.Header="Camp List"
+                syncfusion:DockingManager.State="Hidden"
+                syncfusion:DockingManager.SideInDockedMode="Tabbed"
+                syncfusion:DockingManager.TargetNameInDockedMode="npcWindow"
+                syncfusion:DockingManager.DesiredWidthInDockedMode="620"
+                syncfusion:DockingManager.DesiredWidthInFloatingMode="620">
+                <local:CampTable />
+            </ContentControl>
+            <ContentControl x:Name="petMappingWindow" Tag="Hide" syncfusion:DockingManager.Header="Pet Owners" syncfusion:DockingManager.State="Dock" syncfusion:DockingManager.SideInDockedMode="Right" 
                       syncfusion:DockingManager.DesiredWidthInDockedMode="320" syncfusion:DockingManager.DesiredWidthInFloatingMode="320">
         <syncfusion:SfDataGrid x:Name="petMappingGrid"
                                AllowResizingColumns="False"
