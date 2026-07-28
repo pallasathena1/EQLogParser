@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:EQLogParser"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
 
-    <Grid>
-        <syncfusion:SfDataGrid
+  <Grid>
+    <syncfusion:SfDataGrid
         x:Name="dataGrid"
         AllowResizingColumns="True"
         AllowSorting="True"
@@ -16,63 +16,70 @@
         IsReadOnly="True"
         SourceType="{x:Type local:CampSession}">
 
-            <syncfusion:SfDataGrid.Columns>
+      <syncfusion:SfDataGrid.Columns>
 
-                <syncfusion:GridTextColumn
+        <syncfusion:GridTextColumn
             MappingName="BeginTime"
             DisplayBinding="{Binding BeginTimeText}"
             Width="110"
             HeaderText="Time" />
 
-                <syncfusion:GridTextColumn
+        <syncfusion:GridTextColumn
             MappingName="Zone"
             DisplayBinding="{Binding ZoneInstDiffText}"
             Width="180"
             HeaderText="Zone / Inst / Diff" />
 
-                <syncfusion:GridTextColumn
+        <syncfusion:GridTextColumn
             MappingName="PlayerLevel"
             DisplayBinding="{Binding PlayerLevel}"
             Width="50"
             TextAlignment="Center"
             HeaderText="Lvl" />
 
-                <syncfusion:GridTextColumn
+        <syncfusion:GridTextColumn
+            MappingName="PlayModeText"
+            DisplayBinding="{Binding PlayModeText}"
+            Width="70"
+            TextAlignment="Center"
+            HeaderText="Mode" />
+
+        <syncfusion:GridTextColumn
             MappingName="DurationSeconds"
             DisplayBinding="{Binding DurationText}"
             Width="70"
             TextAlignment="Center"
             HeaderText="Length" />
 
-                <syncfusion:GridTextColumn
+        <syncfusion:GridTextColumn
             MappingName="FightCount"
             DisplayBinding="{Binding FightCount}"
             Width="60"
             TextAlignment="Center"
             HeaderText="Fights" />
 
-                <syncfusion:GridTextColumn
+        <syncfusion:GridTextColumn
             MappingName="TotalExperiencePercent"
             DisplayBinding="{Binding ExperienceText}"
             Width="80"
             TextAlignment="Center"
             HeaderText="XP" />
 
-                <syncfusion:GridTextColumn
+        <syncfusion:GridTextColumn
             MappingName="ExperiencePerHour"
             DisplayBinding="{Binding ExperiencePerHourText}"
             Width="85"
             TextAlignment="Center"
             HeaderText="XP/hr" />
 
-                <syncfusion:GridTextColumn
+        <syncfusion:GridTextColumn
             MappingName="AverageHitPoints"
             DisplayBinding="{Binding AverageHitPoints, StringFormat={}{0:N0}}"
             Width="85"
             TextAlignment="Right"
             HeaderText="Avg HP" />
 
-            </syncfusion:SfDataGrid.Columns>
-        </syncfusion:SfDataGrid>
-    </Grid>
+      </syncfusion:SfDataGrid.Columns>
+    </syncfusion:SfDataGrid>
+  </Grid>
 </UserControl>

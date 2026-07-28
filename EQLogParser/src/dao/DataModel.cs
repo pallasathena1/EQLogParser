@@ -399,7 +399,7 @@ namespace EQLogParser
     public List<ActionBlock> TauntBlocks { get; } = new List<ActionBlock>();
     public Dictionary<string, SpellDamageStats> DoTDamage { get; } = new Dictionary<string, SpellDamageStats>();
     public Dictionary<string, SpellDamageStats> DDDamage { get; } = new Dictionary<string, SpellDamageStats>();
-  }
+    }
     internal class CampSession
     {
         public string Zone { get; set; }
@@ -516,6 +516,56 @@ namespace EQLogParser
             FightCount > 0
                 ? (double)TotalHitPoints / FightCount
                 : 0;
+
+        public string PlayModeText
+        {
+            get
+            {
+                bool hasSolo = false;
+                bool hasGroup = false;
+
+                foreach (Fight fight in Fights)
+                {
+                    var summary = StatsUtil.GetExperienceSummary(fight);
+
+                    if (!summary.Percent.HasValue)
+                    {
+                        continue;
+                    }
+
+                    if (summary.Type == "group")
+                    {
+                        hasGroup = true;
+                    }
+                    else if (summary.Type == "mixed")
+                    {
+                        hasSolo = true;
+                        hasGroup = true;
+                    }
+                    else if (summary.Type == "solo")
+                    {
+                        hasSolo = true;
+                    }
+
+                    if (hasSolo && hasGroup)
+                    {
+                        return "Mixed";
+                    }
+                }
+
+                if (hasGroup)
+                {
+                    return "Group";
+                }
+
+                if (hasSolo)
+                {
+                    return "Solo";
+                }
+
+                return "-";
+            }
+        }
     }
     internal class FightTotalDamage
   {
