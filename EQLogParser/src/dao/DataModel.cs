@@ -203,6 +203,20 @@ namespace EQLogParser
     {
         public int Level { get; set; }
     }
+
+    internal class PlayerWhoRecord : IAction
+    {
+        public string PlayerName { get; set; }
+
+        public int Level { get; set; }
+
+        // Raw text from inside the /who brackets after the level.
+        // Examples:
+        // "Warrior"
+        // "Overlord (Warrior)"
+        // "PAL/MNK/SHM"
+        public string ClassText { get; set; }
+    }
     internal class PlayerContext
     {
         public int? Level { get; set; }

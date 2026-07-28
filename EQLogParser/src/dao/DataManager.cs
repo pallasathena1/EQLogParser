@@ -105,6 +105,9 @@ namespace EQLogParser
 
         private readonly List<ActionBlock> AllLevelBlocks =
             new List<ActionBlock>();
+
+        private readonly List<ActionBlock> AllPlayerWhoBlocks =
+            new List<ActionBlock>();
         private readonly List<string> AdpsKeys = new List<string> { "#DoTCritRate", "#NukeCritRate" };
         private readonly Dictionary<string, Dictionary<string, uint>> AdpsActive = new Dictionary<string, Dictionary<string, uint>>();
         private readonly Dictionary<string, Dictionary<string, uint>> AdpsValues = new Dictionary<string, Dictionary<string, uint>>();
@@ -305,11 +308,28 @@ namespace EQLogParser
         {
             Helpers.AddAction(AllLevelBlocks, record, beginTime);
         }
-        internal List<ActionBlock> GetZonesDuring(double beginTime, double endTime) =>
-           SearchActions(AllZoneBlocks, beginTime, endTime);
 
-        internal List<ActionBlock> GetLevelsDuring(double beginTime, double endTime) =>
+        internal void AddPlayerWhoRecord(
+            PlayerWhoRecord record,
+            double beginTime)
+        {
+            Helpers.AddAction(AllPlayerWhoBlocks, record, beginTime);
+        }
+
+        internal List<ActionBlock> GetZonesDuring(
+            double beginTime,
+            double endTime) =>
+            SearchActions(AllZoneBlocks, beginTime, endTime);
+
+        internal List<ActionBlock> GetLevelsDuring(
+            double beginTime,
+            double endTime) =>
             SearchActions(AllLevelBlocks, beginTime, endTime);
+
+        internal List<ActionBlock> GetPlayerWhoDuring(
+            double beginTime,
+            double endTime) =>
+            SearchActions(AllPlayerWhoBlocks, beginTime, endTime);
 
         internal ZoneRecord GetCurrentZone(double time)
         {
@@ -1137,6 +1157,7 @@ namespace EQLogParser
                 AllExperienceBlocks.Clear();
                 AllZoneBlocks.Clear();
                 AllLevelBlocks.Clear();
+                AllPlayerWhoBlocks.Clear();
                 AllRandomBlocks.Clear();
                 AllSpecialActions.Clear();
                 SpellAbbrvCache.Clear();

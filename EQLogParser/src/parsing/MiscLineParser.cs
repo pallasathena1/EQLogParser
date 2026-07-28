@@ -23,6 +23,11 @@ namespace EQLogParser
         private static readonly Regex ZoneRegex = new Regex(
           @"^You have entered (?<zoneText>.+)\.$",
           RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+        private static readonly Regex WhoPlayerRegex = new Regex(
+  @"^\[(?<level>\d+)\s+(?<classText>[^\]]+)\]\s+(?<player>[A-Za-z]+)",
+  RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
         private static readonly Dictionary<string, byte> StruckByTypes = new Dictionary<string, byte>()
     {
       { "afflicted", 1 }, { "angered", 1 }, { "assaulted", 1 }, { "beset", 1 }, { "bound", 1 }, { "burned", 1 }, { "consumed", 1 }, { "cursed", 1 },
@@ -129,36 +134,66 @@ namespace EQLogParser
                         {
                             looter = split[0] == "--You" ? ConfigUtil.PlayerName : split[0].TrimStart('-');
                         }
-                        // [Thu Jan 27 16:32:01 2022] [1 Warrior] Spasiba(Gnome)  ZONE: The Bazaar(bazaar)
-                        // [Thu Jan 27 16:32:01 2022] [120 Shadowblade (Rogue)] Bloodydagger(Iksar) < Realm of Insanity> ZONE: Realm of Insanity Village III, 200 Terminus Heights, Palatial Guild Hall
-                        // [Wed Jan 26 22:41:48 2022] [65 Overlord (Warrior)] Jenfo (Halfling)
-                        else if (i == 0 && split[0].StartsWith("[", StringComparison.Ordinal) && split[0].Length > 1 && split.Length > 4)
+                        // Standard EQ:
+                        // [1 Warrior] Spasiba(Gnome) ZONE: The Bazaar(bazaar)
+                        // [120 Shadowblade (Rogue)] Bloodydagger(Iksar)
+                        // [65 Overlord (Warrior)] Jenfo (Halfling)
+                        //
+                        // EverQuest Legends:
+                        // [50 PAL/MNK/SHM] Kaija (Human) <Knives Out>
+                        // ZONE: East Freeport (freporte)
+                        else if (i == 0 &&
+                            split[0].StartsWith(
+                              "[",
+                              StringComparison.Ordinal))
                         {
-                            string level = split[0].Substring(1);
-                            if (int.TryParse(level, out int intLevel))
-                            {
-                                string player = null;
-                                string className = null;
-                                if (split[1].EndsWith("]") && split[1].Length > 2)
-                                {
-                                    className = DataManager.Instance.GetClassFromTitle(split[1].Substring(0, split[1].Length - 1));
-                                    player = split[2];
-                                }
-                                else if (split[2].EndsWith("]") && split[2].Length > 2)
-                                {
-                                    className = DataManager.Instance.GetClassFromTitle(split[1] + " " + split[2].Substring(0, split[2].Length - 1));
-                                    player = split[3];
-                                }
-                                else if (split[3].EndsWith("]") && split[3].Length > 2)
-                                {
-                                    className = DataManager.Instance.GetClassFromTitle(split[1] + " " + split[2] + " " + split[3].Substring(0, split[3].Length - 1));
-                                    player = split[4];
-                                }
+                            Match whoMatch =
+                              WhoPlayerRegex.Match(lineData.Action);
 
-                                if (!string.IsNullOrEmpty(className) && !string.IsNullOrEmpty(player))
+                            if (whoMatch.Success &&
+                                int.TryParse(
+                                  whoMatch.Groups["level"].Value,
+                                  NumberStyles.Integer,
+                                  CultureInfo.InvariantCulture,
+                                  out int whoLevel))
+                            {
+                                string player =
+                                  whoMatch.Groups["player"].Value;
+
+                                string classText =
+                                  whoMatch.Groups["classText"].Value.Trim();
+
+                                if (!string.IsNullOrEmpty(player) &&
+                                    !string.IsNullOrEmpty(classText))
                                 {
-                                    PlayerManager.Instance.AddVerifiedPlayer(player, lineData.BeginTime);
-                                    PlayerManager.Instance.SetPlayerClass(player, className);
+                                    PlayerManager.Instance.AddVerifiedPlayer(
+                                      player,
+                                      lineData.BeginTime);
+
+                                    // Preserve existing single-class behavior
+                                    // when the title can be resolved.
+                                    string className =
+                                      DataManager.Instance
+                                        .GetClassFromTitle(classText);
+
+                                    if (!string.IsNullOrEmpty(className))
+                                    {
+                                        PlayerManager.Instance.SetPlayerClass(
+                                          player,
+                                          className);
+                                    }
+
+                                    // Preserve every successfully parsed
+                                    // observation on its own timeline.
+                                    DataManager.Instance.AddPlayerWhoRecord(
+                                      new PlayerWhoRecord
+                                      {
+                                          PlayerName = player,
+                                          Level = whoLevel,
+                                          ClassText = classText
+                                      },
+                                      lineData.BeginTime);
+
                                     handled = true;
                                 }
                             }
