@@ -175,21 +175,29 @@ namespace EQLogParser
       return fight;
     }
 
-    private Fight Create(string defender, double currentTime)
-    {
-      string timeString = DateUtil.FormatSimpleDate(currentTime);
-      return new Fight
-      {
-        Name = string.Intern(defender),
-        BeginTimeString = string.Intern(timeString),
-        BeginTime = currentTime,
-        LastTime = currentTime,
-        Id = CurrentNpcID++,
-        CorrectMapKey = string.Intern(defender)
-      };
-    }
+        private Fight Create(string defender, double currentTime)
+        {
+            string timeString = DateUtil.FormatSimpleDate(currentTime);
+            PlayerContext context = DataManager.Instance.ResolveContext(currentTime);
 
-    private static void AddPlayerTime(Fight fight, DamageRecord record, string player, double time)
+            return new Fight
+            {
+                Name = string.Intern(defender),
+                BeginTimeString = string.Intern(timeString),
+                BeginTime = currentTime,
+                LastTime = currentTime,
+                Id = CurrentNpcID++,
+                CorrectMapKey = string.Intern(defender),
+
+                PlayerLevel = context.Level,
+                Zone = context.Zone,
+                InstanceType = context.InstanceType,
+                Difficulty = context.Difficulty,
+                DifficultyName = context.DifficultyName
+            };
+        }
+
+        private static void AddPlayerTime(Fight fight, DamageRecord record, string player, double time)
     {
       var isInitialTanking = fight.DamageBlocks.Count == 0;
       var segments = isInitialTanking ? fight.InitialTankSegments : fight.DamageSegments;

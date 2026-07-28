@@ -203,7 +203,20 @@ namespace EQLogParser
     {
         public int Level { get; set; }
     }
+    internal class PlayerContext
+    {
+        public int? Level { get; set; }
 
+        public string Zone { get; set; }
+
+        public string InstanceType { get; set; }
+
+        public int? Difficulty { get; set; }
+
+        public string DifficultyName { get; set; }
+
+        public int EffectiveDifficulty => Difficulty ?? 0;
+    }
     internal class LineData
   {
     public string Action { get; set; }
@@ -301,6 +314,17 @@ namespace EQLogParser
     public int NonTankingGroupId { get; set; }
     public bool IsInactivity { get; set; } = false;
     public long Total { get; set; }
+        public int? PlayerLevel { get; set; }
+
+        public string Zone { get; set; }
+
+        public string InstanceType { get; set; }
+
+        public int? Difficulty { get; set; }
+
+        public string DifficultyName { get; set; }
+
+        public int EffectiveDifficulty => Difficulty ?? 0;
         public double? ExperiencePercent =>
   IsInactivity ? null : StatsUtil.GetExperiencePercent(this);
         public string ExperienceText

@@ -310,6 +310,63 @@ namespace EQLogParser
 
         internal List<ActionBlock> GetLevelsDuring(double beginTime, double endTime) =>
             SearchActions(AllLevelBlocks, beginTime, endTime);
+
+        internal ZoneRecord GetCurrentZone(double time)
+        {
+            for (int i = AllZoneBlocks.Count - 1; i >= 0; i--)
+            {
+                var block = AllZoneBlocks[i];
+
+                if (block.BeginTime <= time)
+                {
+                    return block.Actions
+                        .OfType<ZoneRecord>()
+                        .FirstOrDefault();
+                }
+            }
+
+            return null;
+        }
+
+        internal LevelRecord GetCurrentLevel(double time)
+        {
+            for (int i = AllLevelBlocks.Count - 1; i >= 0; i--)
+            {
+                var block = AllLevelBlocks[i];
+
+                if (block.BeginTime <= time)
+                {
+                    return block.Actions
+                        .OfType<LevelRecord>()
+                        .FirstOrDefault();
+                }
+            }
+
+            return null;
+        }
+        internal PlayerContext ResolveContext(double fightStartTime)
+        {
+            var context = new PlayerContext();
+
+            var zone = GetCurrentZone(fightStartTime);
+
+            if (zone != null)
+            {
+                context.Zone = zone.Zone;
+                context.InstanceType = zone.InstanceType;
+                context.Difficulty = zone.Difficulty;
+                context.DifficultyName = zone.DifficultyName;
+            }
+
+            var level = GetCurrentLevel(fightStartTime);
+
+            if (level != null)
+            {
+                context.Level = level.Level;
+            }
+
+            return context;
+        }
         internal void AddExperienceRecord(ExperienceRecord record, double beginTime) =>
             Helpers.AddAction(AllExperienceBlocks, record, beginTime);
         internal List<ActionBlock> GetExperienceDuring(double beginTime, double endTime) =>
