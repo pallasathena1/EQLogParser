@@ -5,7 +5,37 @@
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
 
   <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <StackPanel Grid.Row="0"
+                Orientation="Horizontal"
+                Margin="8,4,8,4">
+
+      <TextBlock Text="Minimum camp:"
+                 VerticalAlignment="Center"
+                 Margin="0,0,6,0" />
+
+      <ComboBox x:Name="minimumDurationBox"
+                Width="110"
+                SelectionChanged="MinimumDurationChanged">
+
+        <ComboBoxItem Content="All camps"
+                      Tag="0" />
+
+        <ComboBoxItem Content="5+ minutes"
+                      Tag="300" />
+
+        <ComboBoxItem Content="15+ minutes"
+                      Tag="900" />
+
+      </ComboBox>
+    </StackPanel>
+
     <syncfusion:SfDataGrid
+        Grid.Row="1"
         x:Name="dataGrid"
         AllowResizingColumns="True"
         AllowSorting="True"
