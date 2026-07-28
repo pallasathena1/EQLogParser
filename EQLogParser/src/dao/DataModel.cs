@@ -186,14 +186,25 @@ namespace EQLogParser
   {
     public string Breaker { get; set; }
     public string Awakened { get; set; }
-  }
+    }
 
-  internal class ZoneRecord : IAction
-  {
-    public string Zone { get; set; }
-  }
+    internal class ZoneRecord : IAction
+    {
+        public string Zone { get; set; }
 
-  internal class LineData
+        public int? Difficulty { get; set; }
+
+        public string DifficultyName { get; set; }
+
+        public string InstanceType { get; set; }
+    }
+
+    internal class LevelRecord : IAction
+    {
+        public int Level { get; set; }
+    }
+
+    internal class LineData
   {
     public string Action { get; set; }
     public double BeginTime { get; set; }
