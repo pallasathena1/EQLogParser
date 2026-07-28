@@ -350,15 +350,87 @@ namespace EQLogParser
 
         internal LevelRecord GetCurrentLevel(double time)
         {
+            LevelRecord levelRecord = null;
+            double levelTime = double.MinValue;
+
             for (int i = AllLevelBlocks.Count - 1; i >= 0; i--)
             {
                 var block = AllLevelBlocks[i];
 
                 if (block.BeginTime <= time)
                 {
-                    return block.Actions
+                    levelRecord = block.Actions
                         .OfType<LevelRecord>()
                         .FirstOrDefault();
+
+                    if (levelRecord != null)
+                    {
+                        levelTime = block.BeginTime;
+                    }
+
+                    break;
+                }
+            }
+
+            PlayerWhoRecord whoRecord = GetCurrentPlayerWho(time);
+
+            if (whoRecord == null)
+            {
+                return levelRecord;
+            }
+
+            // Find timestamp of the matching /who
+            double whoTime = double.MinValue;
+
+            for (int i = AllPlayerWhoBlocks.Count - 1; i >= 0; i--)
+            {
+                var block = AllPlayerWhoBlocks[i];
+
+                if (block.BeginTime <= time)
+                {
+                    if (block.Actions
+                        .OfType<PlayerWhoRecord>()
+                        .Any(record =>
+                            string.Equals(
+                                record.PlayerName,
+                                ConfigUtil.PlayerName,
+                                StringComparison.OrdinalIgnoreCase)))
+                    {
+                        whoTime = block.BeginTime;
+                        break;
+                    }
+                }
+            }
+
+            if (whoTime > levelTime)
+            {
+                return new LevelRecord
+                {
+                    Level = whoRecord.Level
+                };
+            }
+
+            return levelRecord;
+        }
+
+        internal PlayerWhoRecord GetCurrentPlayerWho(double time)
+        {
+            for (int i = AllPlayerWhoBlocks.Count - 1; i >= 0; i--)
+            {
+                var block = AllPlayerWhoBlocks[i];
+
+                if (block.BeginTime <= time)
+                {
+                    foreach (var who in block.Actions.OfType<PlayerWhoRecord>())
+                    {
+                        if (string.Equals(
+                            who.PlayerName,
+                            ConfigUtil.PlayerName,
+                            StringComparison.OrdinalIgnoreCase))
+                        {
+                            return who;
+                        }
+                    }
                 }
             }
 
