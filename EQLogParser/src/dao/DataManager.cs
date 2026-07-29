@@ -463,6 +463,16 @@ namespace EQLogParser
             Helpers.AddAction(AllExperienceBlocks, record, beginTime);
         internal List<ActionBlock> GetExperienceDuring(double beginTime, double endTime) =>
             SearchActions(AllExperienceBlocks, beginTime, endTime);
+
+        internal double GetExperienceTotal(double beginTime, double endTime)
+        {
+            return GetExperienceDuring(beginTime, endTime)
+                .SelectMany(block => block.Actions)
+                .OfType<ExperienceRecord>()
+                .Where(record => record.Percent.HasValue)
+                .Sum(record => record.Percent.Value);
+        }
+
         internal (double TotalPercent, int Count, double PercentPerHour) GetExperienceRate(double beginTime, double endTime)
         {
             List<ActionBlock> blocks = GetExperienceDuring(beginTime, endTime);

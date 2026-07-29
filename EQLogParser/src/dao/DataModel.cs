@@ -474,23 +474,10 @@ namespace EQLogParser
         public string BeginTimeText =>
     DateUtil.FormatSimpleDate(BeginTime);
 
-        public double TotalExperiencePercent
-        {
-            get
-            {
-                double total = 0;
-
-                foreach (Fight fight in Fights)
-                {
-                    if (fight.ExperiencePercent.HasValue)
-                    {
-                        total += fight.ExperiencePercent.Value;
-                    }
-                }
-
-                return total;
-            }
-        }
+        public double TotalExperiencePercent =>
+     DataManager.Instance.GetExperienceTotal(
+         BeginTime,
+         EndTime);
 
         public string ExperienceText =>
             $"{TotalExperiencePercent:F3}%";
